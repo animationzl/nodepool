@@ -481,6 +481,11 @@ class CleanupWorker(BaseCleanupWorker):
             for server in manager.listNodes():
                 meta = server.get('metadata', {})
 
+                if server.id == '43e5c1e3-096b-4e1d-8b59-261bdf69ea24':
+                    self.log.info("workaroud: skip node which can not be "
+                                  "deleted %s" % server.id)
+                    continue
+
                 if 'nodepool_provider_name' not in meta:
                     continue
 
